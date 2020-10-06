@@ -24,18 +24,40 @@ public class RandomISBN_test
         String checksum;
 
         Random generator = new Random();
-        int L1L2, B1B2B3, V1V2;
+        int L1L2, B1B2B3, V1V2, C;
 
-        L1L2 = generator.nextInt(10);
+        L1L2 = 66;
         laendercode = String.format("%02d", L1L2);
 
-        B1B2B3 = generator.nextInt(9)+1;
+        B1B2B3 = 935;
         bandnr = String.format("%03d", B1B2B3);
 
-        V1V2 = generator.nextInt(9)+1;
+        V1V2 = 24;
         verlagsnr = String.format("%02d", V1V2);
 
-        checksum = "C";
+        char L1 = laendercode.charAt(0);
+        int L1_1 = Character.getNumericValue(L1); //int L2 = L1L2%10;
+        char L2 = laendercode.charAt(1);
+        int L2_1 = Character.getNumericValue(L1);
+
+        char B1 = bandnr.charAt(0);
+        int B1_1 = Character.getNumericValue(B1);
+        char B2 = bandnr.charAt(1);
+        int B2_1 = Character.getNumericValue(B2); //int B2 = B1B2B3%100/10;
+        char B3 = bandnr.charAt(2);
+        int B3_1 = Character.getNumericValue(B3);
+
+
+        char V1 = verlagsnr.charAt(0);
+        int V1_1 = Character.getNumericValue(V1); //int V1 = V1V2/10;
+        char V2 = verlagsnr.charAt(1);
+        int V2_1 = Character.getNumericValue(V2);
+
+        // Calculate C
+        C = (hashOp(L1_1)+L2_1+hashOp(B1_1)+B2_1+hashOp(B3_1)+V1_1+hashOp(V2_1))%10;
+
+        // Transform to string
+        checksum = String.valueOf(C);
 
         // Do not change the following line
         return laendercode + "-" + bandnr + "-" + verlagsnr + "-" + checksum;
