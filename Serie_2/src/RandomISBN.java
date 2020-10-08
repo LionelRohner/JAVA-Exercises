@@ -11,7 +11,7 @@ public class RandomISBN
 
     enum ordinals {First, Second, Third;}
 
-    public static void main( String args[] )
+    public static void main( String args[])
     {
         for (ordinals items : ordinals.values()){
         System.out.println(items + " ISBN : " + makeISBN());
