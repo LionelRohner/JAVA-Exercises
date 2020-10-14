@@ -14,7 +14,7 @@ public class RandomISBN
     public static void main( String args[])
     {
         for (ordinals items : ordinals.values()){
-        System.out.println(items + " ISBN : " + makeISBN());
+            System.out.println(items + " ISBN : " + makeISBN());
         }
     }
 
