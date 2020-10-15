@@ -43,12 +43,12 @@ public class Book
 		Date now = new Date();
 
 		// Ein Tag sind 8.64e+7 Millisekunden
-		float CONVERSION = 8.64e+7f;
+		double CONVERSION = 8.64e+7f;
 
 		// get.time() gibt die Anzahl Millisekunden seit 01.01.1970. Wenn dateOfPublication for 1970 liegt ist die Zahl
 		// negativ. Difference wäre in diesem Fall die Anzahl Millisekunden von jetzt bis 1970 minus minus (also plus)
 		// die Spanne von 1970 bis zum Zeitpunkt,der vor 1970 liegt.
-		float difference = (now.getTime() - dateOfPublication.getTime())/CONVERSION; //
+		double difference = (now.getTime() - dateOfPublication.getTime())/CONVERSION; //
 		return (int) difference;
 	}
 
@@ -82,11 +82,14 @@ public class Book
 	//--- Get-/Set-methods ---
 
 	// TODO: Insert your code here!
-	public void setID(int id) {
+	// Setter um ID zu ändern. Muss void sein, da der Setter nichts returned.
+	public void setID(int id)
+	{
 		this.id = id;
 	}
 
-	public String getID(){
+	public String getID()
+	{
 		return ("Title: " + title);
 	}
 

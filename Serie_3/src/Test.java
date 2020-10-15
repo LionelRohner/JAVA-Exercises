@@ -18,22 +18,21 @@ public class Test
         Book b4 = new Book(4, "Freedom", "Jonathan Franzen", fmt.parse("08.06.2010"));
         Book b5 = new Book(5, "Goedel, Escher, Bach", "Douglas Hofstadter", fmt.parse("05.11.1979"));
 
-        Book b6 = new Book();
-        b6.input();
+        System.out.println(b1.age());
 
         // Creating two orders containing theses books...
 
-//        Order order = new Order();
-//        order.setCustomerName("Sophie Muster");
-//        order.setCustomerAddress("Mittelstrasse 10, 3011 Bern");
-//        order.addBook(b1);
-//        order.addBook(b2);
-//        order.addBook(b3);
-//        order.addBook(b4);
-//        order.addBook(b4);
-//        order.addBook(b5);
-//        System.out.println(order);
-//
+        Order order = new Order();
+        order.setCustomerName("Sophie Muster");
+        order.setCustomerAddress("Mittelstrasse 10, 3011 Bern");
+        order.addBook(b1);
+        order.addBook(b2);
+        order.addBook(b3);
+        order.addBook(b4);
+        order.addBook(b4);
+        order.addBook(b5);
+        System.out.println(order);
+
 //        System.out.print("\n");
 //
 //        Order order2 = new Order();
