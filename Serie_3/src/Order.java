@@ -1,5 +1,6 @@
 import javax.swing.plaf.synth.SynthMenuBarUI;
 import java.util.Date;
+import java.lang.reflect.Field;
 
 public class Order {
 
@@ -34,25 +35,21 @@ public class Order {
         }
     }
 
+    // Die toString Methode muss bei jedem Buch überprüfen, ob es existiert. Wenn man die toString() einzeln aufruft,
+    // dann gibt es einen Fehler, da in der ersten Bestellung Buch 5 nicht enthalten ist.
     public String toString() {
-        String all_books = "";
-        if (b1 != null) {
-            all_books += b1.toString();
-            if (b2 != null) {
-                all_books +="\n"+ b2.toString();
-                if (b3 != null) {
-                    all_books += "\n"+b3.toString();
-                    if (b4 != null) {
-                        all_books += "\n"+b4.toString();
-                        if (b5 != null) {
-                            all_books += "\n"+b5.toString();
+        String concBooks = "";
+        if (b1 != null) {concBooks += b1.toString();
+            if (b2 != null) {concBooks +="\n"+ b2.toString();
+                if (b3 != null) {concBooks += "\n"+b3.toString();
+                    if (b4 != null) {concBooks += "\n"+b4.toString();
+                        if (b5 != null) {concBooks += "\n"+b5.toString();
                         }
                     }
                 }
             }
         }
-        return ("Order id: " + id + ", Customer: " + customerName + ", " + customerAddress + "\n" + all_books);
-
+        return ("Order id: " + id + ", Customer: " + customerName + ", " + customerAddress + "\n" + concBooks);
 
     }
 

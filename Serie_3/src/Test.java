@@ -33,12 +33,12 @@ public class Test
         order.addBook(b5);
         System.out.println(order);
 
-//        System.out.print("\n");
-//
-//        Order order2 = new Order();
-//        order2.setCustomerName("Woody Allen");
-//        order2.setCustomerAddress("5th Avenue 7, 10001 New York");
-//        order2.addBook(b5);
-//        System.out.println(order2);
+        System.out.print("\n");
+
+        Order order2 = new Order();
+        order2.setCustomerName("Woody Allen");
+        order2.setCustomerAddress("5th Avenue 7, 10001 New York");
+        order2.addBook(b5);
+        System.out.println(order2);
     }
 }
