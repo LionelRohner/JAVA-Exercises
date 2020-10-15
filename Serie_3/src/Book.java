@@ -2,9 +2,12 @@
 *                Programmierung 1 HS 2020 - Serie 3-1                         * 
 \* ************************************************************************* */
 
+// Lionel Rohner
+
 import java.util.Date;
 import java.util.Scanner;
 import java.text.*;
+import java.util.Scanner;
 
 public class Book
 {
@@ -18,37 +21,74 @@ public class Book
 	//--- constructors ---
 
 	// TODO: Insert your code here!
-	Book book1, book2;
 
+	// Konstruktor mit direkter Eingabe
+	public Book (int id, String title, String author,  Date dateOfPublication)
+	{
+		this.id = id;
+		this.title = title;
+		this.author = author;
+		this.dateOfPublication = dateOfPublication;
+	}
+
+	// Konstruktor für leere Book Objekte
+	public Book(){
+
+	}
 
 	/** Returns the age of the book in days since publication */
 	public int age()
 	{
 		// TODO: Insert your code here!
+		Date now = new Date();
 
-		return 0; //this is to avoid compiler errors, replace it!
+		// Ein Tag sind 8.64e+7 Millisekunden
+		float CONVERSION = 8.64e+7f;
+
+		// get.time() gibt die Anzahl Millisekunden seit 01.01.1970. Wenn dateOfPublication for 1970 liegt ist die Zahl
+		// negativ. Difference wäre in diesem Fall die Anzahl Millisekunden von jetzt bis 1970 minus minus (also plus)
+		// die Spanne von 1970 bis zum Zeitpunkt,der vor 1970 liegt.
+		float difference = (now.getTime() - dateOfPublication.getTime())/CONVERSION; //
+		return (int) difference;
 	}
 
 	/** Returns a String representation of the book */
 	public String toString()
 	{
 		// TODO: Insert your code here!
-		return ""; //this is to avoid compiler errors, replace it!
+
+		return  id + ", " + title + ", " + author + ", " + dateToString(dateOfPublication);
 	}
 
 	/** Reads all book data from user input */
 	public void input() 
 	{
-		Scanner scn = new Scanner( System.in );
-		System.out.print( "Please enter id: " );
-
 		// TODO: Insert your code here!
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Geben Sie eine ID ein: ");
+		id = Integer.parseInt(scanner.nextLine());
+
+		System.out.print("Bitte geben Sie das Veröffentlichungsdatum an (z.B. 01.01.2020) : ");
+		dateOfPublication = stringToDate(scanner.nextLine());
+
+		System.out.print("Bitte geben Sie den Titel an: ");
+		title = scanner.nextLine();
+
+		System.out.print("Bitte geben Sie den Namen des Authors ein: ");
+		author = scanner.nextLine();
 
 	}
 
 	//--- Get-/Set-methods ---
 
 	// TODO: Insert your code here!
+	public void setID(int id) {
+		this.id = id;
+	}
+
+	public String getID(){
+		return ("Title: " + title);
+	}
 
 	//--- helper methods -- DO NOT CHANGE ------------------------------------
 	/** Converts the Date object d into a String object */
