@@ -8,7 +8,7 @@ public class B{
         a2. increment ();
         System .out . println (a1 +"/"+ a2 );
 
-        String s1 = " ROCK ";
+        String s1 = "ROCK";
         String s2 = s1;
         s2 = s2. toLowerCase ();
         System .out . println (s1 +"/"+ s2 );

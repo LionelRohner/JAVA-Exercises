@@ -34,13 +34,13 @@ public class RandomISBN
         int L1L2, B1B2B3, V1V2, C;
 
         // Generate random integers and 0 pad numbers
-        L1L2 = generator.nextInt(98)+1;
+        L1L2 = generator.nextInt(99)+1; // nextInt(98) generiert eine Zahl zwischen 0 und 97 (da exklusive)
         laendercode = String.format("%02d", L1L2);
 
         B1B2B3 = generator.nextInt(899)+100;
         bandnr = String.format("%03d", B1B2B3);
 
-        V1V2 = generator.nextInt(98)+1;
+        V1V2 = generator.nextInt(99)+1;
         verlagsnr = String.format("%02d", V1V2);
 
         // I extracted the first index of the string and converted it to an integer
@@ -50,7 +50,7 @@ public class RandomISBN
         char L1 = laendercode.charAt(0);
         int L1_1 = Character.getNumericValue(L1); //int L2 = L1L2%10;
         char L2 = laendercode.charAt(1);
-        int L2_1 = Character.getNumericValue(L1);
+        int L2_1 = Character.getNumericValue(L2);
 
         // B1B2B3 block
         char B1 = bandnr.charAt(0);
