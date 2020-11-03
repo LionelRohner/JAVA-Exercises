@@ -2,6 +2,8 @@
 *                Programmierung 1 HS 2020 - Serie 4                         *
 \* ************************************************************************* */
 
+// Lionel Rohner (09-123-696)
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +21,7 @@ public class GuessOrc {
 	// Use 'MAX_ATTEMPTS'' instead of coding a number
 	// directly into your program.
 	public final int MAX_ATTEMPTS = 6;
-	
+
 	// Number of mine shafts from which orcs can arrive.
 	public final int MINE_SHAFTS = 12;
 
@@ -74,20 +76,27 @@ public class GuessOrc {
 	 */
 	public int calculateHint( int guessedMineShaftId ) {
 		// Your code goes here
-		ArrayList<Integer> Hints = new ArrayList<>(); //creates an empty list
+
+		//creates an empty list to save the different hints
+		ArrayList<Integer> Hints = new ArrayList<>();
 		int HINT;
 
 		// means that orcs are on the left
-		if (guessedMineShaftId > mineShaftId)
+		if (guessedMineShaftId > mineShaftId){
 			Hints.add(0);
+		}
 
 		// means that orcs are on the right
-		if (guessedMineShaftId < mineShaftId)
+		if (guessedMineShaftId < mineShaftId){
 			Hints.add(1);
+		}
 
 		// means that orcs are at least 5 fields away
-		if (Math.abs(guessedMineShaftId - mineShaftId) > 5)
+		if (Math.abs(guessedMineShaftId - mineShaftId) > 5){
 			Hints.add(4);
+		}
+
+		// Didn't have time for the other hints...
 
 		int count = Hints.size(); // count possible combination of hints
 
@@ -97,7 +106,7 @@ public class GuessOrc {
 	}
 
 	private int getGuess(){
-		String ErrorMessage="Invalid Input: Please enter a single letter from a-l: ";
+		String ErrorMessage="Invalid Input: Please enter one letter from a-l: ";
 
 		// construct an array with all the valid inputs
 		String str = "abcdefghijkl";
@@ -111,13 +120,18 @@ public class GuessOrc {
 
 		while(true) { // basically keeps on looping until a correct input is given
 			String inpString=scanr.nextLine();
-			if (inpString.length()<2) { // input has to be max one character
+			// input has to be max one character
+			if (inpString.length()<2) {
 				InputChar = inpString.charAt(0);
+				// input has to be a letter
 				if (Character.isLetter(InputChar)) {
 					InputChar = Character.toLowerCase(InputChar);
+					// input has to be in the chars array
 					if (chars.contains(InputChar)) {
+						// re-convert to integer
 						InputInt = getColumnAsInt(InputChar);
 						break;
+						// exception handling
 					}else{System.out.println(ErrorMessage);}
 				} else{System.out.println(ErrorMessage);}
 			} else{System.out.println(ErrorMessage);}
@@ -130,67 +144,67 @@ public class GuessOrc {
 	 */
 	public void start() {
 		// Your code goes here, printMap,calculateHint input call...
-	System.out.println(generateOrcIntroScreen());
-	String intro = "\n" + "Knight Kunibert is sitting in his castle and is besieged by orcs. Unfortunately the orcs invade the castle\n" +
-			"through the mine shafts instead of attacking on an open field, which would be better for the knight.\n" +
-			"Normally Kunibert would simply flood the mine shafts with water, but because his Kunigunde insists that he bathes \n" +
-			"daily (one lives in the civilised Middle Ages and not in the stone age), its water supply is very limited\n" +
-			"and it can only flush through individual tunnels. Fortunately Kunibert owns several very sensitive seismographs,\n" +
-			"which put him in the show the approximate direction of the orcs and allow a rough definition of the terrain by which\n" +
-			"they move straight.\n" + "\n";
-	System.out.println(intro);
-	System.out.println("Game starts now!\n");
+		System.out.println(generateOrcIntroScreen());
+		String intro = "\n" + "Knight Kunibert is sitting in his castle and is besieged by orcs. Unfortunately the orcs invade the castle\n" +
+				"through the mine shafts instead of attacking on an open field, which would be better for the knight.\n" +
+				"Normally Kunibert would simply flood the mine shafts with water, but because his Kunigunde insists that he bathes \n" +
+				"daily (one lives in the civilised Middle Ages and not in the stone age), its water supply is very limited\n" +
+				"and it can only flush through individual tunnels. Fortunately Kunibert owns several very sensitive seismographs,\n" +
+				"which put him in the show the approximate direction of the orcs and allow a rough definition of the terrain by which\n" +
+				"they move straight.\n" + "\n";
+		System.out.println(intro);
+		System.out.println("Game starts now!\n");
 
-	// randomly add the orcs to one of the twelve shafts
-	mineShaftId = rand.nextInt(MINE_SHAFTS);
+		// randomly add the orcs to one of the twelve shafts
+		mineShaftId = rand.nextInt(MINE_SHAFTS);
 
-	System.out.println("You have 6 guesses to flush out the orcs! \n");
-	System.out.println("This the map, choose between mineshafts a to l!");
-	String map = 	"|a|b|c|d|e|f|g|h|i|j|k|l|\n" +
-					"-------------------------\n" +
-					"|▒|▒|▒|▒|▒|▒|▒|▒|▒|▒|▒|▒|\n" +
-					"  ┗(｀Дﾟ┗(｀ﾟДﾟ´)┛ﾟД´)┛  \n" +
-					"| |#| |#| |#| |#| |#| |#|\n" +
-					"|#| |#| |#| |#| |#| |#| |\n" +
-					"| |#| |#| |#| |#| |#| |#|\n" +
-					"|#| |#| |#| |#| |#| |#| |\n" +
-					"| |#| |#| |#| |#| |#| |#|\n" +
-					"-------------------------\n" +
-					"-------------------------";
+		System.out.println("You have 6 guesses to flush out the orcs! \n");
+		System.out.println("This the map, choose between mineshafts a to l!");
+		String map = 	"|a|b|c|d|e|f|g|h|i|j|k|l|\n" +
+				"-------------------------\n" +
+				"|▒|▒|▒|▒|▒|▒|▒|▒|▒|▒|▒|▒|\n" +
+				"  ┗(｀Дﾟ┗(｀ﾟДﾟ´)┛ﾟД´)┛  \n" +
+				"| |#| |#| |#| |#| |#| |#|\n" +
+				"|#| |#| |#| |#| |#| |#| |\n" +
+				"| |#| |#| |#| |#| |#| |#|\n" +
+				"|#| |#| |#| |#| |#| |#| |\n" +
+				"| |#| |#| |#| |#| |#| |#|\n" +
+				"-------------------------\n" +
+				"-------------------------";
 
-	System.out.println(map);
-	System.out.println("Please enter a your first guess:  ");
+		System.out.println(map);
+		System.out.println("Please enter a your first guess:  ");
 
-	// call guessing method
-	GuessInput = getGuess();
+		// call guessing method
+		GuessInput = getGuess();
 
-	// initial value for guess
-	int Guesses = 1;
+		// initial value for guess
+		int Guesses = 1;
 
-	while (Guesses < MAX_ATTEMPTS){
-		if (GuessInput == mineShaftId){ // winning condition, exit loop
-			break;}
-		else {
-			printMap(GuessInput, calculateHint(GuessInput));
+		while (Guesses < MAX_ATTEMPTS){
+			if (GuessInput == mineShaftId){ // winning condition, exit loop
+				break;}
+			else {
+				printMap(GuessInput, calculateHint(GuessInput));
 
-			// check how many guesses are left
-			if (GuessInput < 6){
-				System.out.println("You have " + (MAX_ATTEMPTS-Guesses) + " remaining guesses!");
-			} else { // this doesnt work for some reason
-				System.out.println("This is your last chance!");
+				// check how many guesses are left
+				if (GuessInput < 5){
+					System.out.println("You have " + (MAX_ATTEMPTS-Guesses) + " remaining guesses!");
+				} else if (GuessInput == 5){ // this doesnt work for some reason
+					System.out.println("This is your last chance!");
+				}
+
+				System.out.println("What is your next guess? ");
+				GuessInput = getGuess();
+				Guesses ++;
 			}
 
-			System.out.println("What is your next guess? ");
-			GuessInput = getGuess();
-			Guesses ++;
 		}
-
-	}
-	if (GuessInput == mineShaftId) {
-		System.out.println("You repelled the Orcs! \n Congratulations, you won!");}
-	else{
-		printMap(GuessInput, calculateHint(GuessInput));
-		System.out.println("Game Over... Your castle has been overrun!!!");}
+		if (GuessInput == mineShaftId) {
+			System.out.println("You repelled the Orcs! \n Congratulations, you won!");}
+		else{
+			printMap(GuessInput, calculateHint(GuessInput));
+			System.out.println("Game Over... Your castle has been overrun!!!");}
 
 	}
 
@@ -253,8 +267,8 @@ public class GuessOrc {
 			System.out.println( "You have stopped the orc chieftain!"  );
 			System.out.println();
 		} else {
-				System.out.println();
-				System.out.println();
+			System.out.println();
+			System.out.println();
 		}
 		// Build and print the header.
 		String header = "|";
