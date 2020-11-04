@@ -135,6 +135,8 @@ public class VierGewinnt
 		Boolean checkWinGame = false;
 		if (this.horizontalWin(col, row) == true){
 			checkWinGame = true;
+		} else if (this.verticalWin(col, row) == true) {
+			checkWinGame = true;
 		}
 
 
@@ -147,8 +149,6 @@ public class VierGewinnt
 		Boolean checkWin = false;
 
 		Token playerTest = board[col][row];
-
-
 
 		// set a counter to 0; used to count neighboring Tokens of the same type
 		int cnt = 0;
@@ -172,41 +172,70 @@ public class VierGewinnt
 			}
 		}
 
-
-
-
-//		if (board[col][row] == Token.player1){
-//
-//			// set a counter to 0; used to count neighboring Tokens of the same type
-//			int cnt = 0;
-//
-//			// go from left to right through all columns of the row that has been last played
-//			for (int i = 0; i < board.length; i++){
-//
-//				// if Token player1 add one to counter
-//				if (board[i][row].equals(Token.player1)){
-//					cnt ++;
-//
-//				// if its empty or player 2 reset counter
-//				} else {
-//					cnt = 0;
-//				}
-//
-//				// winning condition
-//				if (cnt == 4){
-//					checkWin = true;
-//					break;
-//				}
-//			}
-//		} else {
-//
-//
-//
-//		}
-
 		return checkWin;
 	}
 
+	private Boolean verticalWin(int col, int row){
+
+		Boolean checkWin = false;
+
+		Token playerTest = board[col][row];
+
+		// set a counter to 0; used to count neighboring Tokens of the same type
+		int cnt = 0;
+
+
+		// go from left to right through all columns of the row that has been last played
+		for (int i = 0; i < board[0].length; i++){
+
+			// if Token player1 add one to counter
+			if (board[col][i].equals(playerTest)){
+				cnt ++;
+
+				// if its empty or player 2 reset counter
+			} else {
+				cnt = 0;
+			}
+
+			// winning condition
+			if (cnt == 4){
+				checkWin = true;
+				break;
+			}
+		}
+		return checkWin;
+	}
+
+	private Boolean diagonalWin(int col, int row){
+
+		Boolean checkWin = false;
+
+		Token playerTest = board[col][row];
+
+		// set a counter to 0; used to count neighboring Tokens of the same type
+		int cnt = 0;
+
+
+		// go from left to right through all columns of the row that has been last played
+		for (int i = 0; i < board[0].length; i++){
+
+			// if Token player1 add one to counter
+			if (board[col][i].equals(playerTest)){
+				cnt ++;
+
+				// if its empty or player 2 reset counter
+			} else {
+				cnt = 0;
+			}
+
+			// winning condition
+			if (cnt == 4){
+				checkWin = true;
+				break;
+			}
+		}
+		return checkWin;
+	}
 
 
 	/** Returns a (deep) copy of the board array */
