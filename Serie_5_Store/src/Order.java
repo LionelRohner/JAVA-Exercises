@@ -16,7 +16,7 @@ public class Order {
     private String customerName;
     private String customerAddress;
     // neuer Array names "articles" wird definiert, welche IArticle Objekte abspeichert
-    private ArrayList<IArticle> articles = new ArrayList<IArticle>();
+    private ArrayList<IArticle> itemList = new ArrayList<IArticle>();
 
     // Konstrukor: Bei jeder Instanzierung wird die id um eins inkrementiert; keine obere Limite
     public Order (){
@@ -26,7 +26,7 @@ public class Order {
 
     // Artikel zum "articles" Array hinzufügen
     public void add (IArticle a) {
-        articles.add(a);
+        itemList.add(a);
     }
 
 
@@ -35,7 +35,7 @@ public class Order {
         int total = 0;
 
         // Es wird durch den "articles" Array iteriert
-        for (IArticle a: articles) {
+        for (IArticle a: itemList) {
             // Der Output von "getPrice" wird zum total hinzugefügt
             total += a.getPrice();
         }
@@ -64,7 +64,7 @@ public class Order {
     }
 
     public ArrayList<IArticle> getOrderedArticles() {
-        return new ArrayList<IArticle>(articles);
+        return new ArrayList<IArticle>(itemList);
     }
 
 }
