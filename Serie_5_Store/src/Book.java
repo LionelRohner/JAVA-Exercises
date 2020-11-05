@@ -2,7 +2,7 @@
 *                Programmierung 1 HS 2020 - Serie 5-2                         *
 \* ************************************************************************* */
 
-public class Book 
+public class Book implements IArticle
 {
 	private int id;
 	private String title;
