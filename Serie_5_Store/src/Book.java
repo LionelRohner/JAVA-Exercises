@@ -2,6 +2,8 @@
 *                Programmierung 1 HS 2020 - Serie 5-2                         *
 \* ************************************************************************* */
 
+// Lionel Rohner (09-123-696)
+
 public class Book implements IArticle
 {
 	private int id;
