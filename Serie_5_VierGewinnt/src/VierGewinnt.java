@@ -89,8 +89,7 @@ public class VierGewinnt
 				this.board[column][i] = tok;
 				row_test = i;
 				break;
-			}
-		}
+			}		}
 
 		return row_test; //TODO: Replace this line
 	}
@@ -104,7 +103,7 @@ public class VierGewinnt
 	{
 		//TODO: Your code goes here
 
-		boolean check = false;
+		boolean check = true;
 
 		// loop through the 2D array and check if there is an empty token
 		for (int i = 0; i < board.length; i++) {
@@ -114,9 +113,7 @@ public class VierGewinnt
 				if (board[i][j] == Token.empty) {
 					check = false;
 
-				// if the board is full, check is true and the game stops
-				} else {
-					check =  true;
+				// if no empty token is found the game stops
 				}
 			}
 		}
@@ -145,19 +142,17 @@ public class VierGewinnt
 			checkWinGame = true;
 		}
 
-		// Unfortunately, the diagonal winning conditions dont work...
-
-		else if (this.diagonalWinLR(col, row) == true)
+		else if (this.diagonalWinDL(col, row) == true)
 		{
 			checkWinGame = true;
 		}
-		else if (this.diagonalWinRL(col, row) == true){
+		else if (this.diagonalWinDR(col, row) == true){
 			checkWinGame = true;
 		}
 
 
 		return checkWinGame;
-//		return false;
+
 	}
 
 	// Add some helper methods for "checkVierGewinnt"
@@ -361,18 +356,21 @@ public class VierGewinnt
 	}*/
 
 	// version 4
-	private Boolean diagonalWinLR(int col, int row){
+	// finally works :)
+	private Boolean diagonalWinDL(int col, int row){
 
 		Boolean checkWin = false;
 
 		Token playerTest = board[col][row];
 
-
 		// set a counter to 0; used to count neighboring Tokens of the same type
 		int cnt = 0;
 
+		// check diagonals backwards from row 4 (non-index notation) to avoid out of bounds
+		// for the LR-diagonal (/) the tested token has to be at least in column 4 to avoiod out of bounds
 		if (col >= 3 && row >= 3) {
 
+			// check diagonal in a down-left fashion
 			if (board[col][row].equals(playerTest)) {
 				cnt++;
 			} else cnt = 0;
@@ -402,7 +400,7 @@ public class VierGewinnt
 		return checkWin;
 	}
 
-	private Boolean diagonalWinRL(int col, int row){
+	private Boolean diagonalWinDR(int col, int row){
 
 		Boolean checkWin = false;
 
@@ -411,8 +409,9 @@ public class VierGewinnt
 		// set a counter to 0; used to count neighboring Tokens of the same type
 		int cnt = 0;
 
+		// again test tokens that are above row 4 (on the board) and smaller than column 4 (on the board) to avoid
+		// out of bound errors
 		if (col <= 3 && row >= 3) {
-			System.out.println("diagWinLR is run after first condition");
 
 			if (board[col][row].equals(playerTest)) {
 				cnt++;
