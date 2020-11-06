@@ -18,6 +18,10 @@ public class Order {
     // neuer Array names "articles" wird definiert, welche IArticle Objekte abspeichert
     private ArrayList<IArticle> itemList = new ArrayList<IArticle>();
 
+    // Ich weiss nicht wie man da einen Iterable benutzten soll? Wenn ich den Iterable benutze kann ich die add
+    // Methode nicht mehr benutzten.
+//    private Iterable<IArticle> itemList = new Iterable<IArticle>();
+
     // Konstrukor: Bei jeder Instanzierung wird die id um eins inkrementiert; keine obere Limite
     public Order (){
         id ++;
@@ -42,28 +46,39 @@ public class Order {
         return total;}
 
     //setters
-    public void setCustomerName(String customerName) {
+    public void setCustomerName(String customerName)
+    {
         this.customerName = customerName;
     }
 
-    public void setCustomerAddress(String customerAddress) {
+    public void setCustomerAddress(String customerAddress)
+    {
         this.customerAddress = customerAddress;
     }
 
     // Getters
-    public String getCustomerName() {
+    public String getCustomerName()
+    {
         return customerName;
     }
 
-    public String getCustomerAddress() {
+    public String getCustomerAddress()
+    {
         return customerAddress;
     }
 
-    public int getId(){
+    public int getId()
+    {
         return id;
     }
 
-    public ArrayList<IArticle> getOrderedArticles() {
+    // geht nicht
+//    public Iterable<IArticle> getOrderedArticles() {
+//        return new Iterable<IArticle>(itemList);
+//    }
+
+    public ArrayList<IArticle> getOrderedArticles()
+    {
         return new ArrayList<IArticle>(itemList);
     }
 

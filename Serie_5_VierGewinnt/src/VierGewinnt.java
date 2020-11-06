@@ -2,6 +2,8 @@
 *                Programmierung 1 HS 2020 - Serie 5-1                         * 
 \* ************************************************************************* */
 
+// Lionel Rohner (09-123-696)
+
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -130,19 +132,32 @@ public class VierGewinnt
 	private boolean checkVierGewinnt( int col, int row )
 	{
 		//TODO: Your code goes here
-//
-//		// make a switch for game decision
-//
-//		Boolean checkWinGame = false;
-//		if (this.horizontalWin(col, row) == true){
-//			checkWinGame = true;
-//		} else if (this.verticalWin(col, row) == true) {
-//			checkWinGame = true;
-//		}
-//
-//
-//		return checkWinGame;
-		return false;
+
+		// make a switch for game decision??
+
+		Boolean checkWinGame = false;
+		if (this.horizontalWin(col, row) == true)
+		{
+			checkWinGame = true;
+		}
+		else if (this.verticalWin(col, row) == true)
+		{
+			checkWinGame = true;
+		}
+
+		// Unfortunately, the diagonal winning conditions dont work...
+
+		else if (this.diagonalWinLR(col, row) == true)
+		{
+			checkWinGame = true;
+		}
+		else if (this.diagonalWinRL(col, row) == true){
+			checkWinGame = true;
+		}
+
+
+		return checkWinGame;
+//		return false;
 	}
 
 	// Add some helper methods for "checkVierGewinnt"
@@ -186,8 +201,7 @@ public class VierGewinnt
 		// set a counter to 0; used to count neighboring Tokens of the same type
 		int cnt = 0;
 
-
-		// go from left to right through all columns of the row that has been last played
+		// go from down to up through all rows of a given column
 		for (int i = 0; i < board[0].length; i++){
 
 			// if Token player1 add one to counter
@@ -208,7 +222,11 @@ public class VierGewinnt
 		return checkWin;
 	}
 
-	private Boolean diagonalWin(int col, int row){
+	// version 1
+	// only works for parallel from (0,0) to (4,4), (1,1) to (5,5).
+	// produces out of bound errors a lot...
+	// Unfortunately I need to stop here, I dont have enough time
+/*	private Boolean diagonalWin1(int col, int row){
 
 		Boolean checkWin = false;
 
@@ -217,28 +235,213 @@ public class VierGewinnt
 		// set a counter to 0; used to count neighboring Tokens of the same type
 		int cnt = 0;
 
+		// this only works for very special constellation...
+		for (int i = 0; i < board.length; i++){
+			if (col > 4){
+				break;
+			}
+			for (int j = 0; j < board[0].length; j++) {
+//				if (row > 2){
+//					break;
+//				}
+				if (board[i][j].equals(playerTest)) {
+					cnt++;
+					if (board[i + 1][j + 1].equals(playerTest)) {
+						cnt++;
+						if (board[i + 2][j + 2].equals(playerTest)) {
+							cnt++;
+							if (board[i + 3][j + 3].equals(playerTest)) {
+								cnt++;
 
-		// go from left to right through all columns of the row that has been last played
-		for (int i = 0; i < board[0].length; i++){
 
-			// if Token player1 add one to counter
-			if (board[col][i].equals(playerTest)){
-				cnt ++;
+								}}}}
+				else {
+					cnt = 0;
+				}
 
-				// if its empty or player 2 reset counter
-			} else {
+				// winning condition
+				if (cnt == 4) {
+					checkWin = true;
+					break;
+				}
+
+			}
+		}
+		return checkWin;
+	}*/
+
+	// version 2
+/*	private Boolean diagonalWinLR(int col, int row){
+
+	Boolean checkWin = false;
+
+	Token playerTest = board[col][row];
+
+	// set a counter to 0; used to count neighboring Tokens of the same type
+	int cnt = 0;
+
+	// got in a hurry... sorry for the ugly code
+	for (int i = 0; i < board.length; i++){
+//		if (col < 4){
+//			break;
+//		}
+		for (int j = 0; j < board[0].length; j++) {
+//			if (row < 3){
+//				break;
+//			}
+			if (board[i][j].equals(playerTest)) {
+				cnt++;
+			for (int k = i - 1; k == 0; k--){
+				for (int l = j - 1; l == 0 - j; l--){
+					if(board[k][l].equals(playerTest)){
+						cnt++;
+						System.out.println(cnt);
+					} else { cnt = 0;}
+				}
+			}
+			}
+			else {
 				cnt = 0;
 			}
 
 			// winning condition
-			if (cnt == 4){
+			if (cnt == 4) {
 				checkWin = true;
 				break;
 			}
+
 		}
+	}
+	return checkWin;
+}*/
+
+	// version 3
+/*	private Boolean diagonalWinLR(int col, int row){
+
+		Boolean checkWin = false;
+
+		Token playerTest = board[col][row];
+
+		// set a counter to 0; used to count neighboring Tokens of the same type
+		int cnt = 0;
+
+		// got in a hurry... sorry for the ugly code
+		for (int i = 0; i < board.length; i++){
+//		if (col < 4){
+//			break;
+//		}
+			for (int j = 0; j < board[0].length; j++) {
+//			if (row < 3){
+//				break;
+//			}
+				if (board[i][j].equals(playerTest)) {
+					cnt++;
+					for (int k = i - 1; k == 0; k--){
+						for (int l = j - 1; l == 0 - j; l--){
+							if(board[k][l].equals(playerTest)){
+								cnt++;
+								System.out.println(cnt);
+							} else { cnt = 0;}
+						}
+					}
+				}
+				else {
+					cnt = 0;
+				}
+
+				// winning condition
+				if (cnt == 4) {
+					checkWin = true;
+					break;
+				}
+
+			}
+		}
+		return checkWin;
+	}*/
+
+	// version 4
+	private Boolean diagonalWinLR(int col, int row){
+
+		Boolean checkWin = false;
+
+		Token playerTest = board[col][row];
+
+
+		// set a counter to 0; used to count neighboring Tokens of the same type
+		int cnt = 0;
+
+		if (col >= 3 && row >= 3) {
+
+			if (board[col][row].equals(playerTest)) {
+				cnt++;
+			} else cnt = 0;
+
+			if (board[col - 1][row - 1].equals(playerTest)) {
+				cnt++;
+			} else {
+				cnt = 0;
+			}
+			if (board[col - 2][row - 2].equals(playerTest)) {
+				cnt++;
+			} else {
+				cnt = 0;
+			}
+			if (board[col - 3][row - 3].equals(playerTest)) {
+				cnt++;
+			} else {
+				cnt = 0;
+			}
+		}
+
+
+		if (cnt == 4) {
+			checkWin = true;
+		}
+
 		return checkWin;
 	}
 
+	private Boolean diagonalWinRL(int col, int row){
+
+		Boolean checkWin = false;
+
+		Token playerTest = board[col][row];
+
+		// set a counter to 0; used to count neighboring Tokens of the same type
+		int cnt = 0;
+
+		if (col <= 3 && row >= 3) {
+			System.out.println("diagWinLR is run after first condition");
+
+			if (board[col][row].equals(playerTest)) {
+				cnt++;
+			} else cnt = 0;
+
+			if (board[col + 1][row - 1].equals(playerTest)) {
+				cnt++;
+			} else {
+				cnt = 0;
+			}
+			if (board[col + 2][row - 2].equals(playerTest)) {
+				cnt++;
+			} else {
+				cnt = 0;
+			}
+			if (board[col + 3][row - 3].equals(playerTest)) {
+				cnt++;
+			} else {
+				cnt = 0;
+			}
+		}
+
+
+		if (cnt == 4) {
+			checkWin = true;
+		}
+
+		return checkWin;
+	}
 
 	/** Returns a (deep) copy of the board array */
 	private Token[][] getCopyOfBoard()
