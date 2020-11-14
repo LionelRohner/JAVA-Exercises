@@ -112,7 +112,6 @@ public class VierGewinnt
 				// if there is an empty token, check remains false and the game continues
 				if (board[i][j] == Token.empty) {
 					check = false;
-
 				// if no empty token is found the game stops
 				}
 			}
