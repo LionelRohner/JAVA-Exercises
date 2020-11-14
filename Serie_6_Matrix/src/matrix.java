@@ -78,7 +78,8 @@ public class Matrix {
 //
     public static Matrix transposeMatrix(Matrix A){
 
-        int[][] AT = new int[A.get_n()][A.get_m()];
+//        int[][] AT = new int[A.get_n()][A.get_m()];
+        Matrix AT = new Matrix(A.get_n(), A.get_m());
 
         for(int i = 0; i < A.get_n(); i++)
         {
