@@ -1,0 +1,100 @@
+import java.util.Random;
+import java.util.Arrays;
+
+public class Matrix {
+
+
+    private int rows;
+    private int cols;
+    int[][] array; // matrix
+
+    public static void main(String[] args){
+        Matrix matrix = new Matrix(2,4);
+
+        matrix.getMatrixValues();
+
+        System.out.println("\n");
+
+        Matrix transposeMatrix = transposeMatrix(matrix);
+
+        transposeMatrix.getMatrixValues();
+
+    }
+
+    // constructor (randomly generates matrix)
+    public Matrix(int rows, int cols){
+
+        this.rows = rows;
+        this.cols = cols;
+
+        array = new int[rows][cols];
+
+        Random r = new Random();
+//        r.setSeed(1);
+
+        for(int i = 0; i < rows; i++)
+        {
+            for(int j = 0; j < cols ; j++)
+            {
+                array[i][j] = r.nextInt(10);
+            }
+        }
+    }
+
+    // print matrix
+    public void getMatrixValues(){
+        for(int i = 0; i < rows; i++)
+        {
+            for(int j = 0; j < cols; j++)
+            {
+                System.out.print(array[i][j]+"\t");
+            }
+
+            System.out.print("\n");
+        }
+    }
+
+    // print transposed matrix
+    public void getTransposedValues(){
+        for(int i = 0; i < rows; i++)
+        {
+            for(int j = 0; j < cols; j++)
+            {
+                System.out.print(array[j][i]+"\t");
+            }
+
+            System.out.print("\n");
+        }
+    }
+
+    public static Matrix transposeMatrix(Matrix matrix){
+        Matrix matrixTransposed = new Matrix(matrix.getCols(), matrix.getRows());
+
+        for (int i = 0; i < matrix.getRows(); i++) {
+            for(int j = 0; j < matrix.getCols(); j++) {
+                matrixTransposed.array[j][i] = matrix.array[i][j]; // NOW we are accessing their arrays respectively
+            }
+        }
+        return matrixTransposed;
+    }
+
+
+    // getters
+    public int getRows(){
+        return rows;
+    }
+
+    public int getCols(){
+        return cols;
+    }
+
+    // shows matrix as [[a11 a12 a13][a21 a22 a23][a31 a32 a33]]
+    public String toString(){
+        String result = Arrays.deepToString(array);
+        return result;
+    }
+
+
+}
+
+
