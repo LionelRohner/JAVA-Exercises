@@ -77,7 +77,7 @@ public class Matrix {
 
         Matrix matrixC3 = matrixMultiplication(matrixA3, matrixB3);
 
-        matrixC2.getMatrixValues();
+        matrixC3.getMatrixValues();
 
     }
 
