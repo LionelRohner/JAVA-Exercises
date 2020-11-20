@@ -12,7 +12,11 @@
       <module fileurl="file://$PROJECT_DIR$/Serie_5_Theory/Serie_5_Theory.iml" filepath="$PROJECT_DIR$/Serie_5_Theory/Serie_5_Theory.iml" />
       <module fileurl="file://$PROJECT_DIR$/Serie_5_VierGewinnt/Serie_5_VierGewinnt.iml" filepath="$PROJECT_DIR$/Serie_5_VierGewinnt/Serie_5_VierGewinnt.iml" />
       <module fileurl="file://$PROJECT_DIR$/Serie_6_Matrix/Serie_6_Matrix.iml" filepath="$PROJECT_DIR$/Serie_6_Matrix/Serie_6_Matrix.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Serie_6_Matrix_Demonstartion/Serie_6_Matrix_Demonstartion.iml" filepath="$PROJECT_DIR$/Serie_6_Matrix_Demonstartion/Serie_6_Matrix_Demonstartion.iml" />
       <module fileurl="file://$PROJECT_DIR$/Serie_6_Matrix_New/Serie_6_Matrix_New.iml" filepath="$PROJECT_DIR$/Serie_6_Matrix_New/Serie_6_Matrix_New.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Serie_6_Product/Serie_6_Product.iml" filepath="$PROJECT_DIR$/Serie_6_Product/Serie_6_Product.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Serie_6_Theory/Serie_6_Theory.iml" filepath="$PROJECT_DIR$/Serie_6_Theory/Serie_6_Theory.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Serie_6_Transpose/Serie_6_Transpose.iml" filepath="$PROJECT_DIR$/Serie_6_Transpose/Serie_6_Transpose.iml" />
     </modules>
   </component>
 </project>

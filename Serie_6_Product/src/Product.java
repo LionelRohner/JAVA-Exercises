@@ -1,16 +1,16 @@
-import java.util.Random;
 import java.util.Arrays;
 import java.lang.Math;
 
-import static java.lang.Integer.max;
 
-// Linel ROhner (09-123-696)
+// Lionel Rohner (09-123-696)
 
-// The matrix class allows to generate random matrices with values between 0 and 9 (can be changed on line 66)
-// The class has two main methods transposeMatrix and matrixMultiplication.
+// Unfortunately the demonstartion classes are quite ugly and I m sorry for that. I basically replaced the class name
+// Matrix with Product everywhere. I  first made a class Product or Transpose and replaced the main method of my Matrix
+// class, but I kept on getting an "java : cannot find symbol java" because of the matrixTranspose method, all other
+// methods worked fine!
 
 
-public class Matrix {
+public class Product {
 
 
     private int rows;
@@ -18,87 +18,51 @@ public class Matrix {
     int[][] array; // matrix
 
     public static void main(String[] args){
-        Matrix matrix = new Matrix(2,4);
+        System.out.println("\n" + "Matrix Multiplication Demonstration" + "\n");
 
-        matrix.getMatrixValues();
+        Product matrixA = new Product(3,2);
+        Product matrixB = new Product(2,3);
 
-        System.out.println("\n" + "Transposing..." + "\n");
+//        int[] valuesmatrix = {1,2,3,4,5,6,7,8,9,10,11,12}; // works for rectangular, same order matrices
+//        int[] valuesmatrix = {1,2,3,4,5,6,7,8,9}; // works for square matrices
+        int[] valuesmatrix = {1,2,3,4,5,6}; // works for different order matrices
 
-        Matrix transposeMatrix = transposeMatrix(matrix);
 
-        transposeMatrix.getMatrixValues();
+        matrixA.setMatrixValues(valuesmatrix); // make 0 matrix of specified order
 
-        System.out.println("\n" + "Matrix Multiplication (same order, rectangular matrices)" + "\n");
-
-        Matrix matrixA = new Matrix(3,4);
-        Matrix matrixB = new Matrix(3,4);
-
-        matrixA.getMatrixValues();
+        matrixA.getMatrixValues(); // add elements of choice
 
         System.out.println("\n");
 
-        matrixB.getMatrixValues();
+        matrixB.setMatrixValues(valuesmatrix); // make 0 matrix of specified order
+
+        matrixB.getMatrixValues(); // add elements of choice
 
         System.out.println("\n");
 
-        Matrix matrixC = matrixMultiplication(matrixA, matrixB);
+        Product matrixC = matrixMultiplication(matrixA, matrixB);
 
         matrixC.getMatrixValues();
-
-        System.out.println("\n" + "Matrix Multiplication (different order matrices)" + "\n");
-
-        Matrix matrixA2 = new Matrix(4,3);
-        Matrix matrixB2 = new Matrix(3,4);
-
-        matrixA2.getMatrixValues();
-
-        System.out.println("\n");
-
-        matrixB2.getMatrixValues();
-
-        System.out.println("\n");
-
-        Matrix matrixC2 = matrixMultiplication(matrixA2, matrixB2);
-
-        matrixC2.getMatrixValues();
-
-        System.out.println("\n" + "Matrix Multiplication (square matrices)" + "\n");
-
-        Matrix matrixA3 = new Matrix(3,3);
-        Matrix matrixB3 = new Matrix(3,3);
-
-        matrixA3.getMatrixValues();
-
-        System.out.println("\n");
-
-        matrixB3.getMatrixValues();
-
-        System.out.println("\n");
-
-        Matrix matrixC3 = matrixMultiplication(matrixA3, matrixB3);
-
-        matrixC2.getMatrixValues();
 
     }
 
     // constructor (randomly generates matrix)
-    public Matrix(int rows, int cols){
+    public Product(int rows, int cols){
 
         this.rows = rows;
         this.cols = cols;
 
         array = new int[rows][cols];
+        int cnt = 0;
 
-        Random r = new Random();
-
-
-//        r.setSeed(1); // for replication
+        int matrixElements = 0;
 
         for(int i = 0; i < rows; i++)
         {
             for(int j = 0; j < cols ; j++)
             {
-                array[i][j] = r.nextInt(10);
+                array[i][j] = matrixElements;
+                cnt += 1;
             }
         }
     }
@@ -130,8 +94,8 @@ public class Matrix {
     }
 
 
-    public static Matrix transposeMatrix(Matrix matrix) {
-        Matrix matrixTransposed = new Matrix(matrix.getCols(), matrix.getRows());
+    public static Product transposeMatrix(Product matrix) {
+        Product matrixTransposed = new Product(matrix.getCols(), matrix.getRows());
 
         for (int i = 0; i < matrix.getRows(); i++) {
             for (int j = 0; j < matrix.getCols(); j++) {
@@ -142,14 +106,15 @@ public class Matrix {
     }
 
 
-    public static Matrix matrixMultiplication(Matrix matrix1, Matrix matrix2) {
+    public static Product matrixMultiplication(Product matrix1, Product matrix2) {
         int maxRow = Math.max(matrix1.getRows(), matrix2.getRows());
         int maxCol = Math.max(matrix1.getCols(), matrix2.getCols());
 
-        int klimit = -1;
-        int tempSum = 0;
-        Matrix matrixMult = new Matrix(maxRow,maxCol);
+        int klimit = 0;
 
+        int tempSum = 0;
+
+        Product matrixMult = new Product(maxRow,maxCol);
 
         if (matrix1.getCols() > matrix2.getRows()){
             klimit = matrix2.getRows();
@@ -158,18 +123,18 @@ public class Matrix {
         }
 
 
-        //multiplying and printing multiplication of 2 matrices
-        for(int i = 0; i < matrix1.getRows(); i++) {
+        for(int i=0; i < matrix1.getRows();i++) {
 
             for (int j = 0; j < matrix2.getCols(); j++) {
 
-                matrixMult.set(i,j,0);
+
 
                 for (int k = 0; k < klimit; k++) {
 
                     tempSum += matrix1.get(i,k) * matrix2.get(k,j);
 
                 }
+
                 matrixMult.set(i,j, tempSum);
                 tempSum = 0;
             }
@@ -195,6 +160,21 @@ public class Matrix {
     public void set(int i, int j, int value) {
         array[i][j] = value;
     }
+    public void setMatrixValues(int[] values) {
+
+        int cnt = 0;
+
+        for(int i = 0; i < rows; i++)
+        {
+            for(int j = 0; j < cols ; j++)
+            {
+                array[i][j] = values[cnt];
+                cnt += 1;
+            }
+        }
+    }
+
+
 
 
     // shows matrix as [[a11 a12 a13][a21 a22 a23][a31 a32 a33]]

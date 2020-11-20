@@ -1,14 +1,4 @@
-import java.util.Random;
 import java.util.Arrays;
-import java.lang.Math;
-
-import static java.lang.Integer.max;
-
-// Linel ROhner (09-123-696)
-
-// The matrix class allows to generate random matrices with values between 0 and 9 (can be changed on line 66)
-// The class has two main methods transposeMatrix and matrixMultiplication.
-
 
 public class Matrix {
 
@@ -17,69 +7,6 @@ public class Matrix {
     private int cols;
     int[][] array; // matrix
 
-    public static void main(String[] args){
-        Matrix matrix = new Matrix(2,4);
-
-        matrix.getMatrixValues();
-
-        System.out.println("\n" + "Transposing..." + "\n");
-
-        Matrix transposeMatrix = transposeMatrix(matrix);
-
-        transposeMatrix.getMatrixValues();
-
-        System.out.println("\n" + "Matrix Multiplication (same order, rectangular matrices)" + "\n");
-
-        Matrix matrixA = new Matrix(3,4);
-        Matrix matrixB = new Matrix(3,4);
-
-        matrixA.getMatrixValues();
-
-        System.out.println("\n");
-
-        matrixB.getMatrixValues();
-
-        System.out.println("\n");
-
-        Matrix matrixC = matrixMultiplication(matrixA, matrixB);
-
-        matrixC.getMatrixValues();
-
-        System.out.println("\n" + "Matrix Multiplication (different order matrices)" + "\n");
-
-        Matrix matrixA2 = new Matrix(4,3);
-        Matrix matrixB2 = new Matrix(3,4);
-
-        matrixA2.getMatrixValues();
-
-        System.out.println("\n");
-
-        matrixB2.getMatrixValues();
-
-        System.out.println("\n");
-
-        Matrix matrixC2 = matrixMultiplication(matrixA2, matrixB2);
-
-        matrixC2.getMatrixValues();
-
-        System.out.println("\n" + "Matrix Multiplication (square matrices)" + "\n");
-
-        Matrix matrixA3 = new Matrix(3,3);
-        Matrix matrixB3 = new Matrix(3,3);
-
-        matrixA3.getMatrixValues();
-
-        System.out.println("\n");
-
-        matrixB3.getMatrixValues();
-
-        System.out.println("\n");
-
-        Matrix matrixC3 = matrixMultiplication(matrixA3, matrixB3);
-
-        matrixC2.getMatrixValues();
-
-    }
 
     // constructor (randomly generates matrix)
     public Matrix(int rows, int cols){
@@ -88,17 +15,16 @@ public class Matrix {
         this.cols = cols;
 
         array = new int[rows][cols];
+        int cnt = 0;
 
-        Random r = new Random();
-
-
-//        r.setSeed(1); // for replication
+        int[] matrixElements = {1,2,3,4,5,6,7,8,9};
 
         for(int i = 0; i < rows; i++)
         {
             for(int j = 0; j < cols ; j++)
             {
-                array[i][j] = r.nextInt(10);
+                array[i][j] = matrixElements[cnt];
+                cnt += 1;
             }
         }
     }
@@ -146,26 +72,17 @@ public class Matrix {
         int maxRow = Math.max(matrix1.getRows(), matrix2.getRows());
         int maxCol = Math.max(matrix1.getCols(), matrix2.getCols());
 
-        int klimit = -1;
         int tempSum = 0;
         Matrix matrixMult = new Matrix(maxRow,maxCol);
 
-
-        if (matrix1.getCols() > matrix2.getRows()){
-            klimit = matrix2.getRows();
-        } else {
-            klimit = matrix1.getCols();
-        }
-
-
         //multiplying and printing multiplication of 2 matrices
-        for(int i = 0; i < matrix1.getRows(); i++) {
+        for(int i=0;i<maxRow;i++) {
 
-            for (int j = 0; j < matrix2.getCols(); j++) {
+            for (int j = 0; j < maxCol; j++) {
 
                 matrixMult.set(i,j,0);
 
-                for (int k = 0; k < klimit; k++) {
+                for (int k = 0; k < 3; k++) {
 
                     tempSum += matrix1.get(i,k) * matrix2.get(k,j);
 
@@ -205,5 +122,3 @@ public class Matrix {
 
 
 }
-
-
