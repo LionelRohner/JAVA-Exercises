@@ -79,6 +79,9 @@ public class Matrix {
 
         matrixC3.getMatrixValues();
 
+        System.out.println("\n" + "To String Method" + "\n");
+
+        System.out.println(matrixC3.toString());
     }
 
     // constructor (randomly generates matrix)
