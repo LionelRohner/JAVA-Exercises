@@ -1,3 +1,3 @@
 # JAVA-Exercises
 
-Exercises for the Lecture "Programmierung 1".
+Exercises of a JAVA Lecture.
